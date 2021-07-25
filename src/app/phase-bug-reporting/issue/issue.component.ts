@@ -9,6 +9,7 @@ import { ViewIssueComponent, ISSUE_COMPONENTS } from '../../shared/view-issue/vi
 })
 export class IssueComponent implements OnInit {
   issueId: number;
+  isRowEditClicked: boolean;
 
   readonly issueComponents: ISSUE_COMPONENTS[] = [
     ISSUE_COMPONENTS.TESTER_POST,
@@ -21,6 +22,7 @@ export class IssueComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isRowEditClicked = window.history.state.isEditClicked;
     this.route.params.subscribe(
       params => {
         this.issueId = + params['issue_id'];

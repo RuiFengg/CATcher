@@ -11,6 +11,7 @@ import { IssuesDataTable } from './IssuesDataTable';
 import { MatPaginator, MatSort } from '@angular/material';
 import { PhaseService } from '../../core/services/phase.service';
 import { LoggingService } from '../../core/services/logging.service';
+import { Router } from '@angular/router';
 
 export enum ACTION_BUTTONS {
   VIEW_IN_WEB,
@@ -46,7 +47,8 @@ export class IssueTablesComponent implements OnInit, AfterViewInit {
               private issueService: IssueService,
               private phaseService: PhaseService,
               private errorHandlingService: ErrorHandlingService,
-              private loggingService: LoggingService) { }
+              private loggingService: LoggingService,
+              private router: Router) { }
 
   ngOnInit() {
     this.issues = new IssuesDataTable(this.issueService, this.errorHandlingService, this.sort,
@@ -152,5 +154,9 @@ export class IssueTablesComponent implements OnInit, AfterViewInit {
       this.errorHandlingService.handleError(error);
     });
     event.stopPropagation();
+  }
+
+  navigateToEdit(id: number) {
+    this.router.navigate(['/phaseBugReporting/issues/' + id], { state: {isEditClicked: true} });
   }
 }

@@ -26,6 +26,7 @@ export class DescriptionComponent implements OnInit {
   @Input() issue: Issue;
   @Input() title: string;
   @Input() isEditing: boolean;
+  @Input() isRowEditClicked: boolean;
   @Output() issueUpdated = new EventEmitter<Issue>();
   @Output() changeEditState = new EventEmitter<boolean>();
 
@@ -42,6 +43,10 @@ export class DescriptionComponent implements OnInit {
       description: [''],
     });
     this.submitButtonText = SUBMIT_BUTTON_TEXT.SAVE;
+
+    if (this.isRowEditClicked) {
+      this.changeToEditMode();
+    }
   }
 
   changeToEditMode() {

@@ -12,7 +12,8 @@
       <!-- Tester's Post -->
       <app-issue-description [isEditing]="isIssueDescriptionEditing" (changeEditState)="updateDescriptionEditState($event)"
         *ngIf="this.isComponentVisible(issueComponentsEnum.TESTER_POST)"
-        [issue]="issue" title="Description of Issue" (issueUpdated)="updateIssue($event)">
+        [issue]="issue" title="Description of Issue" (issueUpdated)="updateIssue($event)"
+        [isRowEditClicked]="this.isRowEditClicked">
       </app-issue-description>
 
       <!-- Team's Response -->
