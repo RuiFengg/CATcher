@@ -46,6 +46,7 @@ export class ViewIssueComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() issueId: number;
   @Input() issueComponents: ISSUE_COMPONENTS[];
+  @Input() isRowEditClicked: boolean;
 
   public readonly issueComponentsEnum = ISSUE_COMPONENTS;
   public readonly userRole = UserRole;
@@ -60,6 +61,9 @@ export class ViewIssueComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.getAndPollIssue(this.issueId);
+    if (this.isRowEditClicked) {
+      this.isIssueDescriptionEditing = true;
+    }
   }
 
   /**
